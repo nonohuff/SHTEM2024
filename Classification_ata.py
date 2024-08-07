@@ -80,8 +80,9 @@ def main(pNum, nCategories=6, channels=None):
     if channels is None:
         channels = range(124)  # Testing all 124 channels
 
+    data_filename = 'patient_accurices_nCategories'+str(nCategories)+'.pkl'
     try:
-        with open('patient_accurices.pkl', 'rb') as f:
+        with open(data_filename, 'rb') as f:
             patient_accurices = pickle.load(f)
     except:
         patient_accurices = {}
@@ -111,12 +112,12 @@ def main(pNum, nCategories=6, channels=None):
                     if ch % 62 == 0:
                         # Periodic saving of data
                         patient_accurices[pNum] = accuracies
-                        with open('patient_accurices.pkl', 'wb') as f:
+                        with open(data_filename, 'wb') as f:
                             pickle.dump(patient_accurices, f)
                 
                 # Periodic saving of data
                 patient_accurices[pNum] = accuracies
-                with open('patient_accurices.pkl', 'wb') as f:
+                with open(data_filename, 'wb') as f:
                     pickle.dump(patient_accurices, f)
 
         else:
@@ -133,12 +134,12 @@ def main(pNum, nCategories=6, channels=None):
                 if ch % 62 == 0:
                     # Periodic saving of data
                     patient_accurices[pNum] = accuracies
-                    with open('patient_accurices.pkl', 'wb') as f:
+                    with open(data_filename, 'wb') as f:
                         pickle.dump(patient_accurices, f)
             
             # Periodic saving of data
             patient_accurices[pNum] = accuracies
-            with open('patient_accurices.pkl', 'wb') as f:
+            with open(data_filename, 'wb') as f:
                 pickle.dump(patient_accurices, f)
     
 
@@ -151,10 +152,10 @@ def main(pNum, nCategories=6, channels=None):
     plt.title('Channel vs Accuracy')
     plt.legend(loc='center left', bbox_to_anchor=(1, 0.5))
     plt.grid(True)
-    plt.savefig('./Figures/S' + str(pNum_range)+'_accuracy_per_channel.png')
+    plt.savefig('./Figures/S' + str(pNum_range)+"_nCategories"+str(nCategories)+'_accuracy_per_channel.png')
     plt.show()
 
-    with open('patient_accurices.pkl', 'wb') as f:
+    with open(data_filename, 'wb') as f:
         pickle.dump(patient_accurices, f)
 
     return patient_accurices
