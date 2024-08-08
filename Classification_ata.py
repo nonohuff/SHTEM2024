@@ -109,7 +109,7 @@ def main(pNum, nCategories=6, channels=None):
                     print(f'~ ~ Performing classification on channel {ch} ~ ~ ...')
                     accuracy = RSA.Classification.crossValidateMulti(Xr, Yr.ravel(), [ch])
                     accuracies[ch] = accuracy
-                    if ch % 62 == 0:
+                    if ch % 31 == 0:
                         # Periodic saving of data
                         patient_accurices[pNum] = accuracies
                         with open(data_filename, 'wb') as f:
@@ -131,7 +131,7 @@ def main(pNum, nCategories=6, channels=None):
                 print(f'~ ~ Performing classification on channel {ch} ~ ~ ...')
                 accuracy = RSA.Classification.crossValidateMulti(Xr, Yr.ravel(), [ch])
                 accuracies[ch] = accuracy
-                if ch % 62 == 0:
+                if ch % 31 == 0:
                     # Periodic saving of data
                     patient_accurices[pNum] = accuracies
                     with open(data_filename, 'wb') as f:
@@ -162,5 +162,5 @@ def main(pNum, nCategories=6, channels=None):
 
 if __name__ == "__main__":
     pNum = 0
-    nCategories = 6
+    nCategories = 72
     main(pNum, nCategories, range(124))  # Test all 124 channels
